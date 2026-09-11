@@ -1,9 +1,9 @@
 /* =========================================================
    ぺいぱばっくらいたー — スタイルシート
-   デザインテーマ: パリのブキニスト / カルチェラタン + 三色（青・白・赤）
+   テーマ: パリのブキニスト／カルチェラタン + 三色（青・白・赤）
+   3ページ共通（index.html / books.html / about.html）
    ========================================================= */
 
-/* ---------- デザイントークン ---------- */
 :root {
   /* Colors */
   --c-blue:        #16418f;  /* 主色：見出し・リンク */
@@ -15,26 +15,25 @@
   --c-ink:         #1c1a17;  /* 本文 */
   --c-ink-soft:    #5a554c;  /* 補足テキスト */
   --c-ink-faint:   #8a8478;  /* コピーライト等 */
-  --c-line:        #c8bfa8;  /* 罫線（点線） */
+  --c-line:        #c8bfa8;  /* 点線罫 */
   --c-cover-edge:  #d8d1bf;  /* 書影の枠線 */
   --c-white:       #ffffff;
 
   /* Fonts */
-  --f-hand:    'Klee One', cursive;              /* 店名（手描き楷書） */
-  --f-display: 'Yusei Magic', sans-serif;        /* 見出し（太い手書き） */
-  --f-body:    'Zen Maru Gothic', sans-serif;    /* 本文（丸ゴシック） */
-  --f-tag:     'Yomogi', cursive;                /* 番号タグ */
-  --f-latin:   'EB Garamond', serif;             /* 欧文スタンプ（italic） */
+  --f-hand:    'Klee One', cursive;           /* 店名 */
+  --f-display: 'Yusei Magic', sans-serif;     /* 見出し */
+  --f-body:    'Zen Maru Gothic', sans-serif; /* 本文 */
+  --f-tag:     'Yomogi', cursive;             /* 番号タグ */
+  --f-latin:   'EB Garamond', serif;          /* 欧文 */
 
   /* Spacing */
-  --sp-section:  86px;  /* セクション間の余白 */
-  --sp-block:    30px;  /* セクション内ブロック間 */
-  --sp-gap:      26px;  /* 2カラムの間隔 */
-  --page-max:   960px;  /* コンテンツ最大幅 */
-  --page-pad:    20px;  /* 左右パディング */
+  --sp-section:  70px;
+  --sp-block:    30px;
+  --sp-gap:      26px;
+  --page-max:   960px;
+  --page-pad:    20px;
 }
 
-/* ---------- リセット / ベース ---------- */
 * { box-sizing: border-box; }
 
 body {
@@ -43,7 +42,6 @@ body {
   color: var(--c-ink);
   font-family: var(--f-body);
   -webkit-font-smoothing: antialiased;
-  /* 紙の目のような極薄横罫 */
   background-image: repeating-linear-gradient(
     0deg,
     rgba(31, 77, 64, .025) 0px, rgba(31, 77, 64, .025) 1px,
@@ -63,10 +61,10 @@ img { display: block; max-width: 100%; }
 }
 
 /* =========================================================
-   装飾パーツ
+   装飾パーツ（すべてCSSで描画。画像・アイコンは使わない）
    ========================================================= */
 
-/* カフェ天幕ストライプ + スカラップ（ページ最上部） */
+/* カフェ天幕ストライプ＋スカラップ（ページ最上部） */
 .awning {
   height: 22px;
   margin: 0 calc(var(--page-pad) * -1);
@@ -81,21 +79,17 @@ img { display: block; max-width: 100%; }
   background-size: 22px 16px;
 }
 
-/* トリコロール（青・白・赤）ライン */
-.tricolore {
-  display: flex;
-  height: 4px;
-  margin: 16px calc(var(--page-pad) * -1) 0;
-}
+/* トリコロール（青・白・赤） */
+.tricolore { display: flex; height: 4px; margin: 16px calc(var(--page-pad) * -1) 0; }
 .tricolore span { flex: 1; }
 .tricolore span:nth-child(1) { background: var(--c-blue); }
 .tricolore span:nth-child(2) { background: var(--c-paper); }
 .tricolore span:nth-child(3) { background: var(--c-red); }
 
-/* ビストロタイル（市松模様の帯） */
+/* ビストロの市松タイル帯 */
 .tiles {
   height: 13px;
-  margin-top: var(--sp-block);
+  margin-top: 24px;
   border-radius: 2px;
   background-image: repeating-conic-gradient(var(--c-green) 0% 25%, var(--c-paper) 0% 50%);
   background-size: 13px 13px;
@@ -104,7 +98,7 @@ img { display: block; max-width: 100%; }
 /* 本の背表紙が並ぶストライプ帯 */
 .spines {
   height: 20px;
-  margin-top: var(--sp-section);
+  margin-top: 56px;
   border-radius: 2px;
   box-shadow: 0 0 0 1px var(--c-green);
   background-image: repeating-linear-gradient(
@@ -131,37 +125,34 @@ img { display: block; max-width: 100%; }
   white-space: nowrap;
 }
 .plate--tilt-l { transform: rotate(-2deg); }
-.plate--tilt-r { transform: rotate(1.5deg); }
 .plate--lg { font-size: 12px; padding: 8px 14px; transform: rotate(-1.5deg); align-self: flex-start; }
 .plate--lg small {
   display: block;
-  font-size: 9px;
-  font-weight: 400;
-  letter-spacing: .1em;
-  opacity: .85;
+  font-size: 9px; font-weight: 400;
+  letter-spacing: .1em; opacity: .85;
 }
 
-/* 丸スタンプ（破線／チケット風） */
+/* 丸スタンプ */
 .stamp {
-  width: 76px; height: 76px;
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   text-align: center;
   flex-shrink: 0;
 }
-.stamp--dashed {
+.stamp--dashed {          /* 店名横：破線の緑 */
   position: absolute;
   right: 2px; top: -6px;
+  width: 76px; height: 76px;
   border: 2px dashed var(--c-green);
   color: var(--c-green);
   font: 700 13px/1.3 var(--f-body);
   letter-spacing: .06em;
   transform: rotate(-14deg);
 }
-/* チケット風（上下にスプロケット穴） */
-.stamp--ticket {
+.stamp--ticket {          /* BOOKS：チケット風（上下にスプロケット穴） */
   position: absolute;
-  right: 6px; top: -58px;
+  right: 6px; top: -14px;
+  z-index: 3;
   width: 66px; height: 66px;
   background: var(--c-ink);
   color: var(--c-paper);
@@ -178,19 +169,18 @@ img { display: block; max-width: 100%; }
     repeating-radial-gradient(circle at 50% 61px, var(--c-paper) 0 2.2px, transparent 2.2px 100%);
 }
 
-/* 古書箱フレーム（写真枠） */
+/* 古書箱フレーム（写真・カレンダー・地図の枠） */
 .crate {
   position: relative;
   margin: 0;
   height: 280px;
   border: 2px solid var(--c-green);
   border-radius: 3px;
-  overflow: visible;
   box-shadow: 0 0 0 4px var(--c-paper), 0 0 0 5px var(--c-green);
 }
-.crate--square { height: auto; aspect-ratio: 1 / 1; background: var(--c-white); }
-.crate--map    { height: auto; aspect-ratio: 4 / 3; }
-.crate__hinge {           /* 上辺中央の蝶番 */
+.crate--calendar { height: auto; aspect-ratio: 1167 / 985; background: var(--c-white); }
+.crate--map      { height: auto; aspect-ratio: 4 / 3; }
+.crate__hinge {            /* 上辺中央の蝶番 */
   position: absolute;
   top: -3px; left: 50%;
   transform: translateX(-50%);
@@ -199,7 +189,7 @@ img { display: block; max-width: 100%; }
   border-radius: 0 0 4px 4px;
   z-index: 2;
 }
-.crate__tag {             /* 箱番号タグ */
+.crate__tag {              /* 箱番号タグ */
   position: absolute;
   left: 8px; bottom: 8px;
   background: var(--c-green);
@@ -211,11 +201,12 @@ img { display: block; max-width: 100%; }
   z-index: 2;
 }
 .crate__inner { position: absolute; inset: 0; overflow: hidden; border-radius: 3px; }
-.crate__inner img { width: 100%; height: 100%; object-fit: cover; }
+.crate__inner img,
+.crate__inner iframe { width: 100%; height: 100%; object-fit: cover; border: 0; display: block; }
 .crate__inner--contain img { object-fit: contain; }
 
 /* =========================================================
-   ヘッダー（メインビジュアル）
+   ヘッダー
    ========================================================= */
 .hero { position: relative; padding: 36px 0 0; }
 
@@ -238,18 +229,16 @@ img { display: block; max-width: 100%; }
   font-size: clamp(28px, 6.4vw, 80px);
   line-height: 1.1;
   letter-spacing: .01em;
-  color: var(--c-blue);
   white-space: nowrap;
-  -webkit-text-stroke: 1.4px var(--c-blue); /* 力強い太さのための輪郭 */
 }
+/* Klee One / Yusei Magic に太字ウェイトが無いため輪郭で太さを出している */
+.hero__title a {
+  color: var(--c-blue);
+  -webkit-text-stroke: 1.4px var(--c-blue);
+}
+.hero__title a:hover { color: var(--c-blue); }
 
-.hero__sub {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 18px;
-  margin-top: 20px;
-}
+.hero__sub { display: flex; flex-wrap: wrap; align-items: baseline; gap: 18px; margin-top: 20px; }
 .hero__latin {
   margin: 0;
   font-family: var(--f-display);
@@ -260,22 +249,56 @@ img { display: block; max-width: 100%; }
 }
 .hero__tagline { margin: 0; font-size: 14px; line-height: 1.7; color: var(--c-ink-soft); }
 
-/* 写真3枚グリッド */
-.photogrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 12px;
-  margin-top: 22px;
+/* =========================================================
+   ナビ（街路プレート風タブ／3ページ共通）
+   ========================================================= */
+.nav { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+.navtab {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  padding: 11px 18px;
+  border: 2px solid var(--c-white);
+  font-family: var(--f-body);
+  font-weight: 700;
+  text-align: left;
+  transform: rotate(-1deg);
+  transition: transform .12s, background .12s, color .12s;
+  background: var(--c-paper);
+  color: var(--c-green);
+  box-shadow: 0 0 0 3px var(--c-green);
 }
+.navtab:hover {
+  color: var(--c-green-dark);
+  transform: rotate(-1deg) translateY(-1px);
+}
+.navtab.is-active {
+  background: var(--c-green-dark);
+  color: var(--c-white);
+  box-shadow: 0 0 0 3px var(--c-green-dark), 0 3px 8px rgba(0, 0, 0, .28);
+  transform: rotate(-1deg) translateY(-1px);
+}
+.navtab__en { font-family: var(--f-latin); font-size: 19px; letter-spacing: .1em; line-height: 1; }
+.navtab__ja { font-size: 10.5px; letter-spacing: .12em; opacity: .85; line-height: 1; }
 
 /* =========================================================
    セクション共通
    ========================================================= */
 .section { margin-top: var(--sp-section); }
 .section--books { position: relative; }
-.section--place { margin-top: 34px; }   /* 直前が装飾帯のため詰める */
+main > .section:first-child,
+main > .photogrid:first-child { margin-top: 26px; }
+
+.photogrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin-top: 26px;
+}
 
 .section__head { display: flex; align-items: center; gap: 16px; }
+.section__head--books { padding-right: 84px; }  /* チケットスタンプの逃げ */
 .section__title {
   margin: 0;
   font-family: var(--f-display);
@@ -296,10 +319,9 @@ img { display: block; max-width: 100%; }
   max-width: 44em;
 }
 .note { margin: 0; font-size: 14px; line-height: 1.9; color: var(--c-ink-soft); }
-.note--intro   { margin-top: 22px; font-size: 15px; }
+.note--intro   { margin-top: 20px; font-size: 15px; }
 .note--contact { margin-top: 24px; }
 
-/* 2カラム（カレンダー／営業時間、住所／地図） */
 .cols {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -323,75 +345,79 @@ img { display: block; max-width: 100%; }
 .hours__closed { font-size: 16px; line-height: 1.8; }
 
 /* =========================================================
-   本のこと
+   本の紹介（表紙グリッド）
    ========================================================= */
-.books__plate { display: flex; justify-content: flex-end; margin-bottom: 14px; }
-
 .books {
   list-style: none;
-  margin: 26px 0 0;
+  margin: 30px 0 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2px;                          /* 罫線に見せる隙間 */
-  background: var(--c-green);
-  border: 1px solid var(--c-green);
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 28px 20px;
 }
-.book {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 26px 22px;
-  background: var(--c-card);
-}
-.book__num {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  align-self: flex-start;
-  font-family: var(--f-tag);
-  font-size: 13px;
-  color: var(--c-white);
-  background: var(--c-green);
-  padding: 3px 9px 3px 6px;
-  border-radius: 0 3px 3px 0;
-  transform: rotate(-2deg);
-}
-.book__num::before {
-  content: "";
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: var(--c-paper);
-}
+.book { display: flex; flex-direction: column; gap: 10px; }
+
+/* 書影の枠。厳密に 3:4 を保つため img は absolute で敷く */
 .book__cover {
-  width: 104px; height: 148px;
-  object-fit: cover;
+  position: relative;
+  aspect-ratio: 3 / 4;
   border: 1px solid var(--c-cover-edge);
   border-radius: 2px;
   background: var(--c-white);
+  box-shadow: 0 2px 6px rgba(28, 26, 23, .09);
+  overflow: hidden;
 }
+.book__cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .book__cover--empty { background: var(--c-paper); }  /* 書影未入手のプレースホルダー */
+
+.book__num {           /* 吊り下げ札風の番号タグ */
+  position: absolute;
+  left: -5px; top: 9px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--f-tag);
+  font-size: 11.5px;
+  color: var(--c-white);
+  background: var(--c-green);
+  padding: 2px 7px 2px 5px;
+  border-radius: 0 3px 3px 0;
+  transform: rotate(-3deg);
+}
+.book__num::before {
+  content: "";
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--c-paper);
+}
+
 .book__title {
   margin: 0;
   font-family: var(--f-body);
   font-weight: 700;
-  font-size: 19px;
-  line-height: 1.5;
+  font-size: 14.5px;
+  line-height: 1.55;
+  text-wrap: pretty;
 }
-.book__desc { margin: 0; font-size: 14px; line-height: 1.8; opacity: .75; }
+.book__desc { margin: 0; font-size: 12.5px; line-height: 1.7; color: var(--c-ink-soft); }
 
 .book--cta {
-  display: flex;
+  align-self: start;
+  aspect-ratio: 3 / 4;
   align-items: center;
+  justify-content: center;
   background: var(--c-red);
   color: var(--c-white);
   font-family: var(--f-display);
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1.5;
+  text-align: center;
+  border-radius: 2px;
 }
 
 /* =========================================================
-   場所
+   店舗案内
    ========================================================= */
 .place { display: flex; flex-direction: column; gap: 16px; }
 .place__address {
@@ -406,7 +432,7 @@ img { display: block; max-width: 100%; }
    ほんまる（控えめな1行）
    ========================================================= */
 .honmaru {
-  margin-top: 70px;
+  margin-top: 34px;
   padding-top: 22px;
   border-top: 1px dashed var(--c-line);
   display: flex;
@@ -429,11 +455,9 @@ img { display: block; max-width: 100%; }
   padding: 18px;
   border: 1px dashed var(--c-green);
   border-radius: 8px;
-  /* 切手の裏の斜めハッチ */
   background-image: repeating-linear-gradient(135deg, rgba(31, 77, 64, .05) 0 8px, transparent 8px 16px);
 }
 
-/* ボタン */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -522,9 +546,10 @@ img { display: block; max-width: 100%; }
     height: 56px;
     font-size: 8px;
   }
+  .section__head--books { padding-right: 64px; }
 
   /* メインビジュアルの写真枠：縦横比を保ちつつ低めに */
-  .crate:not(.crate--square):not(.crate--map) {
+  .crate:not(.crate--calendar):not(.crate--map) {
     height: 220px;
   }
 }
