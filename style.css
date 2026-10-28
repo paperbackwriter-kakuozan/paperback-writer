@@ -515,6 +515,45 @@ main > .photogrid:first-child { margin-top: 26px; }
 .footer__copy { font-size: 13px; color: var(--c-ink-faint); }
 
 /* =========================================================
+   スライドショー（HOMEのみ／店名の下・ナビの上）
+   画像比率 2200:1000。フェードで切替、ドット等の操作UIは無し
+   ========================================================= */
+.slideshow {
+  position: relative;
+  margin-top: 30px;
+  aspect-ratio: 2200 / 1000;
+  border: 2px solid var(--c-green);
+  border-radius: 3px;
+  box-shadow: 0 0 0 4px var(--c-paper), 0 0 0 5px var(--c-green);
+}
+.slideshow .crate__hinge { z-index: 4; }
+.slideshow__viewport { position: absolute; inset: 0; overflow: hidden; border-radius: 3px; }
+.slideshow__slide {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  z-index: 1;
+  transition: opacity 1.2s ease;
+}
+.slideshow__slide.is-active { opacity: 1; z-index: 2; }
+.slideshow__slide img { width: 100%; height: 100%; object-fit: cover; }
+.slideshow__no {               /* 街路プレート風の枚数表示 */
+  position: absolute;
+  left: 12px; bottom: 12px;
+  z-index: 4;
+  background: var(--c-green-dark);
+  color: var(--c-white);
+  padding: 6px 11px;
+  border: 2px solid var(--c-white);
+  box-shadow: 0 0 0 3px var(--c-green-dark);
+  font: 700 11px/1 var(--f-body);
+  letter-spacing: .08em;
+  transform: rotate(-2deg);
+}
+.photogrid--below-slides { margin-top: 40px; }
+
+/* =========================================================
    レスポンシブ調整（モバイル専用・PC版のスタイルは変更しない）
    ========================================================= */
 @media (max-width: 640px) {

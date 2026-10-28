@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&family=Zen+Maru+Gothic:wght@400;500;700&family=Yomogi&family=Klee+One:wght@400;600&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<script src="slideshow.js" defer></script>
 </head>
 <body>
 
@@ -33,6 +34,16 @@
     </div>
   </header>
 
+  <div class="slideshow" data-interval="5000">
+    <span class="crate__hinge" aria-hidden="true"></span>
+    <div class="slideshow__viewport">
+      <figure class="slideshow__slide is-active"><img src="photos/slide-1.jpg" alt="パリの街と本のコラージュ"></figure>
+      <figure class="slideshow__slide"><img src="photos/slide-2.jpg" alt="日本の街と本のコラージュ"></figure>
+      <figure class="slideshow__slide"><img src="photos/slide-3.jpg" alt="本屋の店内と本のコラージュ"></figure>
+    </div>
+    <span class="slideshow__no" aria-hidden="true"><span class="slideshow__cur">N°01</span> / 03</span>
+  </div>
+
   <nav class="nav">
       <a class="navtab is-active" href="index.html" aria-current="page">
         <span class="navtab__en">HOME</span>
@@ -52,7 +63,7 @@
 
   <main>
 
-    <div class="photogrid">
+    <div class="photogrid photogrid--below-slides">
       <figure class="crate">
         <span class="crate__hinge" aria-hidden="true"></span>
         <span class="crate__tag">N°01</span>
@@ -80,7 +91,7 @@
         <figure class="crate crate--calendar">
           <span class="crate__hinge" aria-hidden="true"></span>
           <div class="crate__inner crate__inner--contain">
-            <img src="photos/calendar.png" alt="2026年9月の営業カレンダー">
+            <img src="photos/calendar.png" alt="2026年11月の営業カレンダー">
           </div>
         </figure>
         <div class="hours">
@@ -111,7 +122,7 @@
             <small>覚王山西交差点</small>
           </span>
           <p class="note">２DKのアパートの一室です。階段をあがって、そのまま入ってきてください。</p>
-          <a class="btn btn--outline" href="https://maps.app.goo.gl/U6jhxR1uNAk2UCC28" target="_blank" rel="noopener">地図で見る<span aria-hidden="true">→</span></a>
+          <a class="btn btn--outline" href="https://www.google.com/maps/search/?api=1&amp;query=%E6%84%9B%E7%9F%A5%E7%9C%8C%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E5%8D%83%E7%A8%AE%E5%8C%BA%E8%A6%9A%E7%8E%8B%E5%B1%B1%E9%80%9A9-8-2%20%E3%82%AD%E3%83%AA%E3%83%B3%E5%A0%82%E3%83%93%E3%83%AB201" target="_blank" rel="noopener">地図で見る<span aria-hidden="true">→</span></a>
         </div>
         <figure class="crate crate--map">
           <span class="crate__hinge" aria-hidden="true"></span>
